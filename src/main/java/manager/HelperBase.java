@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
 import java.util.List;
 
 public class HelperBase {
@@ -30,5 +31,13 @@ public class HelperBase {
     public boolean isElementPresent(By locator){
         List<WebElement> list = wd.findElements(locator);
         return list.size()>0;
+    }
+
+    public void pause(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
