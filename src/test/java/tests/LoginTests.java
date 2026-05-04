@@ -8,4 +8,12 @@ public class LoginTests extends TestBase{
     public void test(){
 
     }
+    @Test
+    public void loginSuccess(){
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistrationForm("marushana@yandex.ru", "Pokrov1304!");
+        app.getHelperUser().submitLogin();
+
+        //Assert
+    }
 }
