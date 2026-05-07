@@ -77,4 +77,8 @@ public class HelperUser extends HelperBase {
         }
         return false;
     }
+
+    public void submitRegistration() {
+        click(By.xpath("//button[text()='Registration']"));
+    }
 }
