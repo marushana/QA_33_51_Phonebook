@@ -81,4 +81,10 @@ public class HelperUser extends HelperBase {
     public void submitRegistration() {
         click(By.xpath("//button[text()='Registration']"));
     }
+
+    public boolean isNoContactDisplayed() {
+        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
+        boolean res = wait.until(ExpectedConditions.textToBePresentInElement(wd.findElement(By.cssSelector(".contact-page_message__2qafk>h1")), "No Contacts here!"));
+        return res;
+    }
 }

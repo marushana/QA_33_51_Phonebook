@@ -26,8 +26,9 @@ public class RegistrationTests extends TestBase{
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
         Assert.assertTrue(app.getHelperUser().isLogged());
+        Assert.assertTrue(app.getHelperUser().isNoContactDisplayed());
     }
-    @Test
+    @Test(description = "for example")
     public void registrationWrongEmail(){
         Random random = new Random();
         int i = random.nextInt();
@@ -41,9 +42,7 @@ public class RegistrationTests extends TestBase{
 
     @Test
     public void registrationNoEmail(){
-        Random random = new Random();
-        int i = random.nextInt();
-        User user = new User().setPassword("Pokrob&123456");
+        User user = new User().setEmail("").setPassword("Pokrob&123456");
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
@@ -72,6 +71,18 @@ public class RegistrationTests extends TestBase{
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
         Assert.assertTrue(app.getHelperUser().isAlertPresent("$"));
+
+    }
+
+    @Test
+    public void registrationExistUser(){
+        Random random = new Random();
+        int i = random.nextInt();
+        User user = new User().setEmail("marushana@yandex.ru").setPassword("Pokrov1304!");
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistrationForm(user);
+        app.getHelperUser().submitRegistration();
+        Assert.assertTrue(app.getHelperUser().isAlertPresent("User already exist"));
 
     }
 
