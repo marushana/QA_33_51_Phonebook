@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.Random;
 
 public class HelperContact extends HelperBase{
     public HelperContact(WebDriver wd) {
@@ -52,5 +53,54 @@ public class HelperContact extends HelperBase{
 
     public boolean isAddContactPageStillDisplay() {
         return  isElementPresent(By.cssSelector("a.active[href='/add']"));
+    }
+
+    public int removeOneContact() {
+        int before = countOfContacts();
+        logger.info("NUmber of contacts before remove is-->"+before);
+        removeContact();
+        int after = countOfContacts();
+        logger.info("NUmber of contacts before remove is-->"+after);
+        return before-after;
+    }
+
+    private void removeContact() {
+        click(By.cssSelector(".contact-item_card__2SOIM"));
+        click(By.xpath("//button[text() = 'Remove']"));
+        pause(1500);
+    }
+
+    private int countOfContacts() {
+        return wd.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
+    }
+
+    public void removeAllContacts() {
+        while (countOfContacts()!=0){
+            removeContact();
+        }
+    }
+
+    public void provideContacts() {
+        if (countOfContacts()<3){
+            for (int i = 0; i<3; i++){
+                addOneContact();
+            }
+        }
+    }
+
+    private void addOneContact() {
+        int i = new Random().nextInt(1000)+1000;
+        Contact contact = Contact.builder()
+                .name("Harry")
+                .lastName("Gay")
+                .email("Harry"+i+"@gmail.com")
+                .phone("132465"+i)
+                .address("hogsmite")
+                .description("friend")
+                .build();
+        openContactForm();
+        fillContactForm(contact);
+        saveContact();
+        pause(1000);
     }
 }
