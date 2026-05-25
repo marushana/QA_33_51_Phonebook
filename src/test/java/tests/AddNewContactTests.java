@@ -52,5 +52,29 @@ public class AddNewContactTests extends TestBase{
         Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
     }
 
+    @Test
+    public void addNewContactWrongName(){
+
+    }
+
+    @Test
+    public void addNewContactWrongLastName(){
+
+    }
+
+    @Test
+    public void addNewContactWrongPhone(){
+
+    }
+
+    @Test
+    public void addNewContactWrongEmail(){
+
+    }
+
+    @Test
+    public void addNewContactWrongAddress(){
+
+    }
 
 }
