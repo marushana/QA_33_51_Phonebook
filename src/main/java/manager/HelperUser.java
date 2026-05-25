@@ -65,18 +65,7 @@ public class HelperUser extends HelperBase {
         click(By.xpath("//button[text()='Sign Out']"));
     }
 
-    public boolean isAlertPresent(String message) {
-        Alert alert = new WebDriverWait(wd, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
-        if (alert!=null&&alert.getText().contains(message)){
-            //alert.accept(); click OK
-            //alert.dismiss(); click cancel
-            //alert.sendKeys("text"); type into alert
-            pause(2000);
-            alert.accept();
-            return true;
-        }
-        return false;
-    }
+
 
     public void submitRegistration() {
         click(By.xpath("//button[text()='Registration']"));
